@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tandoor Room — Online Menu | Order Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:'Instrument Sans',system-ui,-apple-system,sans-serif;background:#faf9f6;color:#151515;line-height:1.5}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* nav */
+nav{background:#151515;color:#fff;position:sticky;top:0;z-index:100}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+nav .logo{font-family:'DM Serif Display',serif;font-size:1.375rem;letter-spacing:-0.02em}
+nav .logo em{font-style:italic;color:#e8853a}
+nav ul{display:flex;gap:24px;list-style:none}
+nav ul a{font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.65);transition:color .25s}
+nav ul a:hover{color:#fff}
+.nav-order{background:#e8853a;color:#151515;padding:8px 20px;border-radius:6px;font-weight:600;font-size:0.8125rem;transition:background .25s}
+.nav-order:hover{background:#f09850}
+
+/* hero */
+.hero{background:#151515;color:#fff;min-height:90dvh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 50%,rgba(232,133,58,0.07),transparent);pointer-events:none}
+.hero .container{position:relative;z-index:1;padding:80px 20px}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.75rem,6vw,4.5rem);letter-spacing:-0.03em;line-height:1.05;max-width:640px;margin-bottom:20px}
+.hero h1 span{font-style:italic;color:#e8853a}
+.hero p{font-size:1.125rem;color:rgba(255,255,255,0.55);max-width:480px;margin-bottom:36px;line-height:1.65}
+.btn-order{background:#e8853a;color:#151515;padding:16px 36px;border-radius:10px;font-weight:600;font-size:1rem;transition:all .25s;display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;font-family:inherit}
+.btn-order:hover{background:#f09850;transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,133,58,0.25)}
+.btn-outline{background:transparent;color:#fff;padding:16px 36px;border-radius:10px;font-weight:500;font-size:1rem;transition:all .25s;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.15)}
+.btn-outline:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.3)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* tag */
+.tagline{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.tagline span{font-size:0.8125rem;font-weight:500;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:6px}
+.tagline span::before{content:'';width:6px;height:6px;border-radius:50%;background:#e8853a;display:inline-block}
+
+/* section */
+section{padding:80px 0}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.75rem,3.5vw,2.5rem);letter-spacing:-0.02em;line-height:1.15;margin-bottom:8px}
+.section-sub{color:#666;font-size:1rem;margin-bottom:40px;max-width:500px}
+
+/* highlights */
+.highlights{background:#fff;border-top:1px solid #efede8;border-bottom:1px solid #efede8}
+.highlight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.highlight{text-align:center;padding:24px}
+.highlight .num{font-family:'DM Serif Display',serif;font-size:2.5rem;color:#e8853a;line-height:1;margin-bottom:8px}
+.highlight h4{font-weight:600;font-size:0.9375rem;margin-bottom:4px}
+.highlight p{font-size:0.8125rem;color:#666}
+
+/* menu grid */
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.menu-item{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #efede8;display:flex;justify-content:space-between;align-items:center;transition:all .25s}
+.menu-item:hover{border-color:#d8d4cc;box-shadow:0 4px 20px rgba(0,0,0,0.03);transform:translateY(-1px)}
+.menu-item .info{flex:1}
+.menu-item .name{font-weight:600;font-size:0.9375rem;margin-bottom:2px}
+.menu-item .desc{font-size:0.8125rem;color:#666;max-width:320px}
+.menu-item .price{font-weight:600;font-size:0.9375rem;color:#e8853a;white-space:nowrap;margin-left:16px}
+.menu-cat{grid-column:1 / -1;font-family:'DM Serif Display',serif;font-size:1.25rem;color:#151515;padding:8px 0 4px;margin-top:8px}
+.menu-cat:first-of-type{margin-top:0}
+
+/* categories filter */
+.cat-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.cat-tags button{background:transparent;border:1px solid #e0ddd6;padding:8px 18px;border-radius:20px;font-size:0.8125rem;font-weight:500;color:#555;cursor:pointer;transition:all .2s;font-family:inherit}
+.cat-tags button.active{background:#151515;border-color:#151515;color:#fff}
+.cat-tags button:hover:not(.active){border-color:#151515;color:#151515}
+
+/* contact */
+.contact-row{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:800px}
+.contact-info p{font-size:0.9375rem;color:#444;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.contact-info p strong{color:#151515;min-width:60px}
+
+/* footer */
+footer{background:#151515;color:rgba(255,255,255,0.45);padding:40px 0;font-size:0.8125rem;text-align:center}
+footer a{color:rgba(255,255,255,0.5)}
+footer a:hover{color:#fff}
+
+@media(max-width:768px){
+  nav ul{display:none}
+  .hero h1{font-size:2.25rem}
+  .highlight-grid{grid-template-columns:1fr}
+  .menu-grid{grid-template-columns:1fr}
+  .contact-row{grid-template-columns:1fr;gap:24px}
+  section{padding:48px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo"><em>The</em> Tandoor <em>Room</em></div>
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#order">Order</a></li>
+    </ul>
+    <a href="#menu" class="nav-order">Order Now →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="tagline">
+      <span>Cloud kitchen · Delhi NCR</span>
+      <span>30–40 min delivery</span>
+      <span>★ 4.8 (400+ reviews)</span>
+    </div>
+    <h1>North Indian food that actually <span>tastes</span> like home.</h1>
+    <p>Fresh ingredients, traditional recipes, and the same flavors your grandmother made — delivered to your door.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-order">View Menu →</a>
+      <a href="https://wa.me/919XXXXXXXXX" class="btn-outline">Order on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<div class="highlights">
+  <div class="container">
+    <div class="highlight-grid">
+      <div class="highlight"><div class="num">50+</div><h4>Menu Items</h4><p>Curries, breads, biryanis, kebabs &amp; more</p></div>
+      <div class="highlight"><div class="num">12k+</div><h4>Orders Delivered</h4><p>Serving Delhi NCR since 2021</p></div>
+      <div class="highlight"><div class="num">4.8</div><h4>Average Rating</h4><p>Across Zomato, Swiggy &amp; direct orders</p></div>
+    </div>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="container">
+    <h2 class="section-title">Our Menu</h2>
+    <p class="section-sub">Made fresh every day. No preservatives, no shortcuts.</p>
+
+    <div class="cat-tags">
+      <button class="active">All</button>
+      <button>Starters</button>
+      <button>Main Course</button>
+      <button>Breads</button>
+      <button>Biryani</button>
+      <button>Beverages</button>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-cat">Starters</div>
+      <div class="menu-item"><div class="info"><div class="name">Chicken Tikka</div><div class="desc">Chargrilled boneless chicken, hung curd &amp; spice marinade</div></div><div class="price">₹299</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Paneer Tikka</div><div class="desc">Cottage cheese marinated in bell pepper &amp; onion</div></div><div class="price">₹259</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Hara Bhara Kebab</div><div class="desc">Spinach &amp; green pea patty, lightly spiced</div></div><div class="price">₹219</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Chicken Seekh Kebab</div><div class="desc">Minced chicken with ginger, garlic &amp; fresh herbs</div></div><div class="price">₹289</div></div>
+
+      <div class="menu-cat">Main Course</div>
+      <div class="menu-item"><div class="info"><div class="name">Butter Chicken</div><div class="desc">Creamy tomato gravy, tandoori chicken, kasuri methi</div></div><div class="price">₹399</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Dal Makhani</div><div class="desc">Slow-cooked black lentils, cream &amp; butter (16 hrs)</div></div><div class="price">₹319</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Chicken Curry</div><div class="desc">Traditional onion-tomato gravy, garam masala finish</div></div><div class="price">₹349</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Palak Paneer</div><div class="desc">Cottage cheese in spiced spinach purée</div></div><div class="price">₹299</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Kadhai Chicken</div><div class="desc">Bone-in chicken, bell pepper, onion &amp; kadhai masala</div></div><div class="price">₹369</div></div>
+
+      <div class="menu-cat">Breads</div>
+      <div class="menu-item"><div class="info"><div class="name">Butter Naan</div><div class="desc">Tandoor-baked leavened bread brushed with butter</div></div><div class="price">₹49</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Garlic Naan</div><div class="desc">Stuffed with fresh garlic &amp; coriander</div></div><div class="price">₹59</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Tandoori Roti</div><div class="desc">Whole wheat bread baked in clay oven</div></div><div class="price">₹39</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Laccha Paratha</div><div class="desc">Layered whole wheat paratha, crispy outside</div></div><div class="price">₹69</div></div>
+
+      <div class="menu-cat">Biryani</div>
+      <div class="menu-item"><div class="info"><div class="name">Chicken Dum Biryani</div><div class="desc">Aged basmati, slow-cooked in sealed handi</div></div><div class="price">₹379</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Veg Dum Biryani</div><div class="desc">Mixed vegetables &amp; basmati, layered &amp; dum cooked</div></div><div class="price">₹299</div></div>
+
+      <div class="menu-cat">Beverages</div>
+      <div class="menu-item"><div class="info"><div class="name">Masala Chai</div><div class="desc">Freshly brewed with cardamom, ginger &amp; cinnamon</div></div><div class="price">₹49</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Mango Lassi</div><div class="desc">Thick yogurt blended with Alphonso mango pulp</div></div><div class="price">₹89</div></div>
+      <div class="menu-item"><div class="info"><div class="name">Chaas (Buttermilk)</div><div class="desc">Spiced chilled buttermilk, jeera &amp; mint</div></div><div class="price">₹49</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="order" style="background:#fff;border-top:1px solid #efede8;border-bottom:1px solid #efede8">
+  <div class="container">
+    <h2 class="section-title">How to order</h2>
+    <p class="section-sub">Three ways to get your food. Pick whatever's easiest.</p>
+    <div class="highlight-grid">
+      <div class="highlight"><div class="num">01</div><h4>Direct WhatsApp</h4><p>Tap the button below and send "menu". We'll take it from there.</p></div>
+      <div class="highlight"><div class="num">02</div><h4>Swiggy / Zomato</h4><p>Search "The Tandoor Room" on your delivery app. We're 4.8 stars for a reason.</p></div>
+      <div class="highlight"><div class="num">03</div><h4>Call us</h4><p>Old school works too. Call or text and we'll have it ready.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="https://wa.me/919XXXXXXXXX" class="btn-order" style="font-size:1rem;padding:16px 40px">Order on WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Reach us</h2>
+    <p class="section-sub">We're here 11am to 11pm, every day.</p>
+    <div class="contact-row">
+      <div class="contact-info">
+        <p><strong>📍</strong> Lajpat Nagar, New Delhi — 110024</p>
+        <p><strong>📞</strong> +91 9XXXXXXXXX</p>
+        <p><strong>📧</strong> hello@thetandoorroom.in</p>
+        <p><strong>🕐</strong> 11:00 AM – 11:00 PM · All days</p>
+      </div>
+      <div class="contact-info">
+        <p style="font-size:0.875rem;color:#888;margin-bottom:16px">Available on:</p>
+        <p><strong>🍔</strong> Zomato · Swiggy · Magicpin</p>
+        <p><strong>⭐</strong> 4.8 average rating across platforms</p>
+        <p style="font-size:0.875rem;color:#888;margin-top:20px;line-height:1.6">Minimum order ₹199. Delivery within 4 km radius. Cash, UPI, card accepted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px">&copy; 2025 <em style="font-style:normal;color:rgba(255,255,255,0.6)">The Tandoor Room</em>. All rights reserved.</p>
+    <p>Design by <a href="#">Templates by Anmol</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
